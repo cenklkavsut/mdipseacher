@@ -24,8 +24,10 @@ class Menu:
         searchType = str(self.getSearchType())
         selection = str(self.getSelection())
         while searchType != "exit" or searchType != "-e" or selection != "exit" or selection != "-e" :
-            selection = input("!!!!! QFind !!!!!\n"
-                              + "Enter | search or -s | to display the Search options\n"
+            print("!!!!! QFind !!!!!")
+            print("::::::: ::::::::::")
+            selection = input(
+                                "Enter | search or -s | to display the Search options\n"
                               + "Enter | exit or -e | to exit the application\n"
                                 ":").lower()
             if selection == "exit" or selection == "-e":
@@ -59,7 +61,7 @@ class Menu:
         if searchOptRes == "-ip" or searchOptRes == "ip":
             SearchIp.SearchIp().searcher()
         elif searchOptRes == "-d" or searchOptRes == "domainname":
-            SearchDomain.SearchDomain().searcher()
+            SearchDomain.SearchDomain().searchMenu()
         elif searchOptRes == "-m" or searchOptRes == "email":
             SearchEmail.SearchEmail().searcher()
         else:
