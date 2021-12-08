@@ -6,13 +6,7 @@ class SearchEmail(s):
     def __init__(self):
         self.selection = None
 
-    def setSelection(self, value):
-        self.selection = value
-
-    def getSelection(self):
-        return self.selection
-
     def searcher(self):
-         selection =str(self.getSelection())
+         selection =str(s.getSelection())
          print("Email Search")
          selection = input("Enter ip of target:")

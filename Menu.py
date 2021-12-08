@@ -24,17 +24,22 @@ class Menu:
         searchType = str(self.getSearchType())
         selection = str(self.getSelection())
         while searchType != "exit" or searchType != "-e" or selection != "exit" or selection != "-e" :
-            print("!!!!! QFind !!!!!")
-            print("::::::: ::::::::::")
+            print("::::::: :::::::::: :: ::....        ::")
+            print("::   :: ::            ::  ::        ::")
+            print("::   :: :::::::::: :: ::  ::   :::::::")
+            print("::::::: ::         :: ::  ::   ::   ::")
+            print("     :: ::         :: ::  ::   :::::::")
+            print("       ::")
+
             selection = input(
                                 "Enter | search or -s | to display the Search options\n"
                               + "Enter | exit or -e | to exit the application\n"
                                 ":").lower()
-            if selection == "exit" or selection == "-e":
-                break
-            elif selection == "search" or selection == "-s":
-                self.setSelection(str(selection))
+            if selection == "search" or selection == "-s":
+                self.setSelection(selection)
                 self.callSearch()
+            elif selection == "exit" or selection == "-e":
+                break
             else:
                 print("Entered wrong search option!")
 

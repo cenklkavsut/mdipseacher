@@ -1,11 +1,12 @@
 from Search import Search as s
 import whois
+import numpy as np
 
 
 class SearchDomain(s):
 
     def __init__(self):
-        self.searchName =None
+        self.searchName = None
 
     def setSearchName(self, value):
         self.searchName = value
@@ -14,29 +15,33 @@ class SearchDomain(s):
         return self.searchName
 
     def searchMenu(self):
-        searchName = input("Enter domain name you are searching for\n" +
+        searchName = input("Enter domain name you are searching for or -e to exit\n" +
                            " Example | shearcher | " + "\n:").lower()
         searchName = "www." + searchName
         self.setSearchName(searchName)
+        self.searcher()
 
     def searcher(self):
-        domains = []
-        domNames = [".COM", ".DE", ".NET", ".CN", ".UK", "TR", ".ORG", ".INFO", ".NL", ".EU ", ".RU", ".aero", ".asia",
+        domNames = [".com", ".de", ".net", ".cn", ".uk", "tr", ".org", ".info", ".nl", ".eu ", ".ru", ".aero", ".asia",
                     ".biz ", ".cat ", ".com", ".coop",
                     ".edu", ".gov", ".info", ".int ", ".jobs", ".mil", ".mobi ", ".museum", ".name ", ".net ", ".org ",
                     ".pro ", ".te", ".travel"]
-        i = 0
-        for domNames in domNames:
-            temp = self.getSearchName() + str(domNames[i])
-            domains[i].push(temp)
-            i += 1
-        if self.getSearchName() != "" or self.getSearchName() is not None:
+
+        domains = [""] * len(domNames)
+        k: int = 0
+        for i in range(len(domNames)):
+            domains.append(str(self.getSearchName()) + str(domains[k]))
+            k += 1
+
+        if self.getSearchName() != "":
             number = 0
-            for domain in domains:
+            for l in range(len(domains)):
+                print(domains[number], "is registered" if self.is_registered(domains[number]) else "is not registered")
                 number += 1
-                print(domain[number], "is registered" if self.is_registered(domain[number]) else "is not registered")
-        else:
+        elif self.getSearchName() == "-e":
             quit()
+        else:
+            self.searchMenu()
 
     def is_registered(self, domain_name):
         try:
