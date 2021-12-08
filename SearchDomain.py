@@ -47,11 +47,8 @@ class SearchDomain(s):
 
     def is_registered(self, domain_name):
         try:
-            self.clientSocket.accept()
-            self.setSoTimeout(1000)
-            w = whois.whois(domain_name)
-            self.clientSocket.close()
+            print(whois.whois(domain_name))
         except Exception:
             return False
         else:
-            return bool(w.domain_name)
+            return bool(domain_name)
