@@ -1,12 +1,14 @@
 from Search import Search as s
 import whois
-import numpy as np
+import socket
 
 
 class SearchDomain(s):
 
     def __init__(self):
         self.searchName = None
+        self.clientSocket = socket.socket()
+
 
     def setSearchName(self, value):
         self.searchName = value
@@ -30,7 +32,7 @@ class SearchDomain(s):
         domains = [""] * len(domNames)
         k: int = 0
         for i in range(len(domNames)):
-            domains.append(str(self.getSearchName()) + str(domains[k]))
+            domains.append(str(self.getSearchName()) + str(domNames[k]))
             k += 1
 
         if self.getSearchName() != "":
@@ -45,37 +47,11 @@ class SearchDomain(s):
 
     def is_registered(self, domain_name):
         try:
+            self.clientSocket.accept()
+            self.setSoTimeout(1000)
             w = whois.whois(domain_name)
+            self.clientSocket.close()
         except Exception:
             return False
         else:
             return bool(w.domain_name)
-
-
-"""
-    def is_registered(self, domain_name):
-        domNames = [".COM", ".DE", ".NET", ".CN", ".UK", ".ORG", ".INFO", ".NL", ".EU ", ".RU",".aero",".asia" ,".biz ",".cat ",".com" ,".coop" ,
-                    ".edu" ,".gov" ,".info",".int ",".jobs",".mil" ,".mobi ",".museum",".name ",".net ",".org ",".pro ",".te" , ".travel"]
-        domains = []
-        domResult = []
-        domNameExt = None
-        i = 0
-        for domNames in domNames:
-            #checks if domain name is registered
-            try:
-                domNameExt = domNames[i].lower()
-                i += 1
-                w = str(domain_name) + str(domNameExt)
-                w = whois.whois(domain_name)
-                domains = [w].push()
-            except Exception:
-                print("Not registered")
-            else:
-               x = 0
-               for domain in domains:
-                  print(f"result:{domains[x]}")
-                  x +=1
-                  domains=[x]
-                  print(domains[x] + "is registered" )
-
-"""
