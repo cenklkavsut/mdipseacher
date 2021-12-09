@@ -5,8 +5,8 @@ import SearchIp
 
 class Menu:
     def __init__(self):
-        self.searchType = None
         self.selection = None
+        self.searchType = None
 
     def setSelection(self, value):
         self.selection = value
@@ -23,7 +23,7 @@ class Menu:
     def optionsMenu(self):
         searchType = str(self.getSearchType())
         selection = str(self.getSelection())
-        while searchType != "exit" or searchType != "-e" or selection != "exit" or selection != "-e" :
+        while searchType != "exit" or searchType != "-e" or selection != "exit" or selection != "-e":
             print("::::::: :::::::::: :: ::....        ::")
             print("::   :: ::            ::  ::        ::")
             print("::   :: :::::::::: :: ::  ::   :::::::")
@@ -31,10 +31,8 @@ class Menu:
             print("     :: ::         :: ::  ::   :::::::")
             print("       ::")
 
-            selection = input(
-                                "Enter | search or -s | to display the Search options\n"
-                              + "Enter | exit or -e | to exit the application\n"
-                                ":").lower()
+            selection = input("Enter | search or -s | to display the Search options\n"
+                              + "Enter | exit or -e | to exit the application\n" + ":").lower()
             if selection == "search" or selection == "-s":
                 self.setSelection(selection)
                 self.callSearch()
@@ -47,27 +45,25 @@ class Menu:
         selection = self.getSelection()
         if selection == "search" or selection == "-s":
             searchType = input("Types of Searches\n"
-                               + "Enter -ip or ip :To Search a Ip Address of the pc\n"
-                               + "Enter -d or domainname:To Search a Domain Name online\n"
-                               + "Enter -m or email To Search s Email Address\n"
+                               + "Enter -ip :To Search a Ip Address of the pc\n"
+                               + "Enter -d :To Search a Domain Name online\n"
+                               + "Enter -m :To Search s Email Address\n"
                                + "Enter -e or exit To exit the application\n"
-                               + ":"
-                               ).lower()
-            self.setSearchType(searchType)
+                               + ":").lower
             if searchType != "-e" or searchType != "exit":
-                self.basedOptions()
-        elif self.selection == "exit" or self.selection == "-e" or self.selection == "" or self.selection is None:
+                self.setSearchType(searchType)
+                self.appMenu()
+        elif self.selection == "-e" or self.selection == "exit":
             print("Thanks for using QFind app!")
         else:
             print("No Selection available error!")
 
-    def basedOptions(self):
-        searchOptRes = self.getSearchType()
-        if searchOptRes == "-ip" or searchOptRes == "ip":
+    def appMenu(self):
+        if str(self.getSearchType()) == "-ip":
             SearchIp.SearchIp().searcher()
-        elif searchOptRes == "-d" or searchOptRes == "domainname":
+        elif str(self.getSearchType()) == "-d":
             SearchDomain.SearchDomain().searchMenu()
-        elif searchOptRes == "-m" or searchOptRes == "email":
+        elif str(self.getSearchType()) == "-m":
             SearchEmail.SearchEmail().searcher()
         else:
             print("Error occurred try again later!")

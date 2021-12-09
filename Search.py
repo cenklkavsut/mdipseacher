@@ -1,4 +1,5 @@
 
+#can be later used to compare ip and searches.
 class Search:
         def __init__(self):
             self.searchType = None

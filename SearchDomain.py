@@ -9,7 +9,6 @@ class SearchDomain(s):
         self.searchName = None
         self.clientSocket = socket.socket()
 
-
     def setSearchName(self, value):
         self.searchName = value
 
