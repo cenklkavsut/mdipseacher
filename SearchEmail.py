@@ -43,7 +43,7 @@ class SearchEmail(s):
             emailNum += 1
 
     def emailResult(self, emailNum: object):
-        isvalid = validate_email(str(emailNum), verify=True)
+        isvalid = validate_email(str(emailNum), verify=False)
         return f"email:{emailNum} and email is registered:{isvalid}"
 
 
