@@ -33,11 +33,11 @@ class Menu:
 
             selection = input("Enter | search or -s | to display the Search options\n"
                               + "Enter | exit or -e | to exit the application\n" + ":").lower()
-            if selection == "search" or selection == "-s":
+            if selection == "search" and selection == "-s":
                 self.setSelection(selection)
                 self.callSearch()
             elif selection == "exit" or selection == "-e":
-                break
+                pass
             else:
                 print("Entered wrong search option!")
 
