@@ -1,6 +1,6 @@
 from validate_email_address import validate_email
 import re
-
+]'
 from Search import Search as s
 
 
